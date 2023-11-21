@@ -16,7 +16,18 @@ wss.on('connection', function connection(ws) {
   })
 })
 
+
+var global="https://okberry.onrender.com/"
+
+server.use(cors({
+  credentials:true,
+  origin:[global]
+}));
+
 server.listen(port, function() {
   console.log(`Server is listening on ${port}!`)
 })
 
+server.get("*",(req,res)=>{
+  res.sendFile(path.join(__dirname ,'index.html'))
+})
